@@ -1,0 +1,79 @@
+.right-container{
+  width: 60%;
+  padding: .5%;
+  .header{
+    margin-top: 4px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0px;
+    border-bottom: 2px solid black;
+    .my{font-weight: 400;}
+    .add-folder{
+      cursor: pointer;
+      display: flex;;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      background-color: white;
+    }
+  }
+
+
+  .folder-container{
+    .folder-header{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      border-bottom: 2px solid black;
+      .folder-header-item{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        .folder-icon{
+          color: #FFCA29;
+        }
+        button{
+          display: flex;
+          justify-content:center;
+          align-items: center;
+          background-color: white;
+          border: none;
+        }
+      }
+    }
+
+    .cards-container{
+      width: 100%;
+      padding: 20px;
+      display: flex;
+      flex-wrap: wrap ;
+      gap: 20px;
+      .card{
+        width: 45%;
+        cursor: pointer;
+        box-shadow: 2px 2px 5px royalblue;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        padding: 12px;
+        transition-duration: .5s;
+        .logo{
+          width: 20%;
+        }
+        .title-container{
+          display: flex;
+          flex-direction: column;
+          margin-left: 0;
+          font-weight: 800;
+          letter-spacing: 2px;
+        }
+      }
+      .card:hover{
+        box-shadow: 10px 10px 10px rosybrown;
+      }
+    }
+  }
+}
