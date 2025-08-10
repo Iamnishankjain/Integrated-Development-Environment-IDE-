@@ -2,7 +2,7 @@ import React from 'react'
 import './scss/PlayGroundScreen.scss'
 import { useParams } from 'react-router-dom'
 import Header from './Header/Header';
-import Editor from './Editor';
+import EditorContainer from './EditorContainer';
 import IO from './IO';
 
 const PlayGroundScreen = () => {
@@ -12,7 +12,7 @@ const PlayGroundScreen = () => {
     <div className='playground-container'>
       <Header />
       <div className='main-section'>
-        <Editor />
+        <EditorContainer />
         <IO/>
       </div>
     </div>
