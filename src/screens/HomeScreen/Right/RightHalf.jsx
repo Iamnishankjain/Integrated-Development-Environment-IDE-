@@ -2,10 +2,14 @@ import { useContext } from "react";
 import "./rightHalf.scss";
 import { PlayGroundContext } from "../../Provider/PlayGroundProvider";
 import { modalConstants, ModalContext } from "../../Provider/ModalProvider";
+import { useNavigate } from "react-router-dom";
 
 const Folder = ({ folderTitle, cards,folderId }) => {
   const playGroundFeature = useContext(PlayGroundContext);
   const modalFeatures=useContext(ModalContext);
+
+  const navigate = useNavigate();
+
   const onDeleteFolder = (folderId) =>{
     playGroundFeature.deleteFolder(folderId);
   }
@@ -45,8 +49,12 @@ const Folder = ({ folderTitle, cards,folderId }) => {
             playGroundFeature.deleteFile(folderId,file.id);
           }
 
+          const navigateToPlayGroundScreen = () =>{
+            navigate(`/playground/${folderId}/${file.id}`);
+          }
+
           return (
-            <div className="card" key={index}>
+            <div className="card" key={index} onClick={navigateToPlayGroundScreen}>
               <img src="logo/logo.png" alt="logo" className="logo" />
               <div className="title-container">
                 <span>{file?.title}</span>

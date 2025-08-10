@@ -1,0 +1,72 @@
+.editor-container {
+  background-color: rgb(23, 183, 246);
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  
+  .editor-header{
+    box-sizing: border-box;
+    background-color: rgb(249, 247, 247);
+    padding: 20px;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .editor-left-container{
+      gap: 20px;
+      display: flex;
+      align-items: center;
+      button{
+        cursor: pointer;
+        border: none;
+        padding: 5px;
+        border-radius: 10px;
+        background: blanchedalmond;
+        transition-duration: .2s;
+      }
+      button:hover{
+        background-color: burlywood
+      }
+    }
+    .editor-right-container{
+      select{
+        outline: none;
+        cursor: pointer;
+        padding: 5px;
+        border-radius: 10px;
+        margin: 2px;
+      }
+    }
+  }
+  .editor-body{
+    flex-grow: 1;
+  }
+  .editor-footer{
+    background-color: rgb(249, 247, 247);
+    height: 20px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    button,label{
+      gap: 10px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: none;
+    }
+    input{
+      display: none;
+    }
+    .run-code-button{
+      border-radius: 10px;
+      background-color: rgb(236, 189, 189);
+      padding: 10px;
+    }
+    .run-code-button:hover{
+      background-color: rgb(236, 143, 143);
+    }
+  }
+}

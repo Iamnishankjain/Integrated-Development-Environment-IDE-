@@ -11,7 +11,7 @@ const RightHalf = () => {
   return (
     <div className='left-container'>
       <div className='item-container'>
-        <img src="logo/logo.png" alt="logo" />
+        <img src="/logo/logo.png" alt="logo" />
         <h4>Code. Compile. Debug.</h4>
         <button onClick={openCreatePlayGroundModal}>
           <span className="material-symbols-outlined">add</span>
