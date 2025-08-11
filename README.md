@@ -1,12 +1,26 @@
-# React + Vite
+# CodeWithNJ - Online Code Playground
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A web-based **code playground** built with **React** and **Monaco Editor** that supports writing, running, and managing multiple code files and projects. It integrates with the **Judge0 API** to compile and execute code in various programming languages.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- Rich code editor powered by [Monaco Editor](https://github.com/microsoft/monaco-editor) (the same editor used in VS Code)
+- Syntax highlighting and themes (light/dark)
+- Create, edit, and delete multiple projects, folders, and files
+- Support for multiple programming languages (e.g., Java, C++, Python, javascript)
+- Compile and run code via Judge0 API
+- Save, import, and export code files and projects
+- Input and output panels for testing code interactively
+- Responsive and clean UI with project/file navigation
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Screenshots
+
+![Main Editor View](./project-image/Home.png)
+
+![Playground Management](./project-image\playground.png)
+
+---
