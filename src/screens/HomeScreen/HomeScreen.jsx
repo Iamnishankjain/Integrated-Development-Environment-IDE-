@@ -1,5 +1,5 @@
 import React from 'react'
-import './homeScreen.scss' from './homeScreen.scss'
+import './homeScreen.scss'
 import LeftHalf from './Left/LeftHalf'
 import RightHalf from './Right/RightHalf'
 import Modal from '../Provider/Modal/Modal'
