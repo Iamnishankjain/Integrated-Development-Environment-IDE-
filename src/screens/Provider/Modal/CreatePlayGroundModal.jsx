@@ -34,9 +34,9 @@ const CreatePlayGroundModal = () => {
         </div>
         <div className='item'>
           <select name='language'>
-            <option value="java">JAVA</option>
+            <option value="java">java</option>
             <option value="cpp">cpp</option>
-            <option value="javascript">JavaScript</option>
+            <option value="javascript">javascript</option>
             <option value="python">python</option>
           </select>
           <button type='submit'>Create PlayGround</button>

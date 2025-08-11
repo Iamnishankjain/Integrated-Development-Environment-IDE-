@@ -50,7 +50,7 @@ const Folder = ({ folderTitle, cards,folderId }) => {
           }
 
           const navigateToPlayGroundScreen = () =>{
-            navigate(`/playground/${folderId}/${file.id}`);
+            navigate(`/playground/${file.id}/${folderId}`);
           }
 
           return (

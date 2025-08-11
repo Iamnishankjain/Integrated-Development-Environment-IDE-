@@ -16,6 +16,9 @@
       gap: 20px;
       display: flex;
       align-items: center;
+      .title-edit{
+        cursor: pointer;
+      }
       button{
         cursor: pointer;
         border: none;
@@ -47,6 +50,7 @@
     padding: 20px;
     display: flex;
     justify-content: space-between;
+    overflow: hidden;
     align-items: center;
     button,label{
       gap: 10px;
@@ -69,3 +73,4 @@
     }
   }
 }
+

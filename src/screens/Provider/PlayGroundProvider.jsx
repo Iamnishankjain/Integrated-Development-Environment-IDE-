@@ -26,7 +26,7 @@ const initialData=[
       id: v4(),
       title: 'test',
       code: `console.log("Hello world");`,
-      language: "JavaScript",
+      language: "javascript",
       }
     ]
   },
@@ -156,6 +156,84 @@ const PlayGroundProvider = ({children}) => {
     setFolders(updatedFolderList);
   }
 
+  const getDefaultCode = (fileId,folderId) =>{
+
+    for(let i=0;i<folders.length;i++){
+      if(folderId===folders[i].id){
+        const currentFile=folders[i].files;
+        for(let j=0;j<currentFile.length;j++){
+          if(fileId===currentFile[j].id){
+            return currentFile[j].code;
+          }
+        }
+      }
+    }
+  }
+  const getDefaultLanguage= (fileId,folderId) =>{
+    for(let i=0;i<folders.length;i++){
+      if(folderId===folders[i].id){
+        const currentFile=folders[i].files;
+        for(let j=0;j<currentFile.length;j++){
+          if(fileId===currentFile[j].id){
+            return currentFile[j].language;
+          }
+        }
+      }
+    }
+  }
+
+  const getUpdateLanguage= (fileId,folderId,language) =>{
+    const updatedFolderList = [...folders]
+    for(let i=0;i<updatedFolderList.length;i++){
+      if(folderId===updatedFolderList[i].id){
+        const currentFile=updatedFolderList[i].files;
+        for(let j=0;j<currentFile.length;j++){
+          if(fileId===currentFile[j].id){
+            currentFile[j].code=defaultCode[language];
+            currentFile[j].language=language;
+            break;
+          }
+        }
+        break;
+      }
+    }
+    localStorage.setItem('data',JSON.stringify(updatedFolderList));
+    setFolders(updatedFolderList);
+  }
+
+
+  const saveCode= (fileId,folderId,newCode) =>{
+    const updatedFolderList = [...folders]
+    for(let i=0;i<updatedFolderList.length;i++){
+      if(folderId===updatedFolderList[i].id){
+        const currentFile=updatedFolderList[i].files;
+        for(let j=0;j<currentFile.length;j++){
+          if(fileId===currentFile[j].id){
+            currentFile[j].code=newCode;
+            break;
+          }
+        }
+        break;
+      }
+    }
+    localStorage.setItem('data',JSON.stringify(updatedFolderList));
+    setFolders(updatedFolderList);
+  }
+
+  const getTitleOfFile= (fileId,folderId) =>{
+    for(let i=0;i<folders.length;i++){
+      if(folderId===folders[i].id){
+        const currentFile=folders[i].files;
+        for(let j=0;j<currentFile.length;j++){
+          if(fileId===currentFile[j].id){
+            return currentFile[j].title;
+          }
+        }
+      }
+    }
+  }
+  
+
   const playGroundFeature = {
     folders,
     createNewPlayGround,
@@ -164,7 +242,13 @@ const PlayGroundProvider = ({children}) => {
     editFolderTitle,
     editFileTitle,
     deleteFile,
-    createNewFile
+    createNewFile,
+    // playground feture----------------
+    getDefaultCode,
+    getDefaultLanguage,
+    getUpdateLanguage,
+    saveCode,
+    getTitleOfFile,
   }
 
   return (

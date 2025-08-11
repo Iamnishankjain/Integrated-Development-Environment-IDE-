@@ -1,11 +1,16 @@
-import React, { useRef, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import './scss/Editor.scss'
 import Editor from '@monaco-editor/react'
-const EditorContainer = () => {
-  const [code,setCode]=useState('');
-  const [language,setLanguage]=useState('cpp');
+import { PlayGroundContext } from '../Provider/PlayGroundProvider';
+import { ModalContext, modalConstants } from '../Provider/ModalProvider'
+import Modal from '../Provider/Modal/Modal';
+const EditorContainer = ({fileId,folderId,runCode}) => {
+  const {getDefaultCode,getDefaultLanguage,getUpdateLanguage,saveCode,getTitleOfFile} = useContext(PlayGroundContext);
+  const modalFeatures = useContext(ModalContext)
+  const [code,setCode]=useState(()=> getDefaultCode(fileId, folderId));
+  const [language,setLanguage]=useState(()=> getDefaultLanguage(fileId, folderId));
   const [theme,setTheme]=useState('vs-dark');
-  const codeRef=useRef();
+  const codeRef=useRef(code);
 
 
   const fileNameExtMap = {
@@ -17,34 +22,35 @@ const EditorContainer = () => {
 
   const editorOptions = {
     fontSize:18,
-    wordWrap:'on'
+    wordWrap:'on',
+    minimap: { enabled: false },
   }
   const onChangeCode = (newCode) =>{
     codeRef.current=newCode;
   }
   const onUploadCode = (event) =>{
     const file = event.target.files[0];
-  if (!file) return;
+    if (!file) return;
 
-  const textFileExtensions = [
-    "txt", "java", "py", "cpp", "c", "js", "json", "html", "css", "md", "xml", "sh", "bat", "rb", "php"
-  ];
+    const textFileExtensions = [
+      "txt", "java", "py", "cpp", "c", "js", "json", "html", "css", "md", "xml", "sh", "bat", "rb", "php"
+    ];
 
-  const extension = file.name.split('.').pop().toLowerCase();
-  const isTextExtension = textFileExtensions.includes(extension);
-  const isTextMime = file.type.startsWith("text/");
+    const extension = file.name.split('.').pop().toLowerCase();
+    const isTextExtension = textFileExtensions.includes(extension);
+    const isTextMime = file.type.startsWith("text/");
 
-  if (isTextExtension || isTextMime) {
-    const fileReader = new FileReader();
-    fileReader.readAsText(file);
-    fileReader.onload = function (e) {
-      const importedCode = e.target.result;
-      setCode(importedCode);
-      codeRef.current=importedCode;
-    };
-  } else {
-    alert("Please choose a supported text file");
-  }
+    if (isTextExtension || isTextMime) {
+      const fileReader = new FileReader();
+      fileReader.readAsText(file);
+      fileReader.onload = function (e) {
+        const importedCode = e.target.result;
+        setCode(importedCode);
+        codeRef.current=importedCode;
+      };
+    } else {
+      alert("Please choose a supported text file");
+    }
   }
   const onExportCode=()=>{
     const codeValue=codeRef.current?.trim();
@@ -66,22 +72,51 @@ const EditorContainer = () => {
   }
 
   const onChangeLanguage=(e)=>{
-    setLanguage(e.target.value);
+    const selectedLanguage=e.target.value;
+    setLanguage(selectedLanguage);
+    getUpdateLanguage(fileId,folderId,selectedLanguage);
+    const newCode=getDefaultCode(fileId,folderId);
+    setCode(newCode);
+    codeRef.current=newCode;   
   }
   const onChangeTheme=(e)=>{
     setTheme(e.target.value);
+  }
+  const onSaveCode=()=>{
+    saveCode(fileId,folderId,codeRef.current);
+    alert("code  Saved");
+  }
+  const fullScreenRef = useRef(false)
+  const onFullScreen=()=>{
+    fullScreenRef.current=!fullScreenRef.current;
+    if(fullScreenRef.current){
+      document.body.requestFullscreen();
+    }else{
+      document.exitFullscreen();
+    }
+  }
+
+  const onRunCode=()=>{
+    runCode({code:codeRef.current,language});
+  }
+  const onChangeFileName = () => {
+    modalFeatures.setModalPayload({
+      folderId,
+      fileId,
+    })
+    modalFeatures.openModal(modalConstants.UPDATE_FILE_TITLE)
   }
 
   return (
     <div className='editor-container'>
       <div className='editor-header'>
         <div className='editor-left-container'>
-          <h2>{"title of file"}</h2>
-          <span className="material-symbols-outlined">edit</span>
-          <button>Save Code</button>
+          <h2>{getTitleOfFile(fileId,folderId)}</h2>
+          <span className="material-symbols-outlined title-edit" onClick={onChangeFileName}>edit</span>
+          <button onClick={onSaveCode}>Save Code</button>
         </div>
         <div className='editor-right-container'>
-          <select onChange={onChangeLanguage} name="language" id="language">
+          <select value={language} onChange={onChangeLanguage}>
             <option value="cpp">cpp</option>
             <option value="java">java</option>
             <option value="python">python</option>
@@ -104,7 +139,7 @@ const EditorContainer = () => {
         />
       </div>
       <div className="editor-footer">
-        <button>
+        <button onClick={onFullScreen}>
           <span className="material-symbols-outlined">fullscreen</span>
           <span>Full Screen</span>
         </button>
@@ -117,13 +152,15 @@ const EditorContainer = () => {
           <span className="material-symbols-outlined">file_save</span>
           <span>Export Code</span>
         </button>
-        <button className='run-code-button'>
+        <button className='run-code-button' onClick={onRunCode}>
           <span className="material-symbols-outlined">play_arrow</span>
           <span>Run</span>
         </button>
       </div>
+      <Modal />
     </div>
   )
 }
 
 export default EditorContainer
+ 

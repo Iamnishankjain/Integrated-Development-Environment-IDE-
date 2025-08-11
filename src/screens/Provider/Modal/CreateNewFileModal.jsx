@@ -25,9 +25,9 @@ const CreateNewFileModal = () => {
         <div className='item'>
           <input type="text" name='fileName' required/>
           <select name='language'>
-            <option value="java">JAVA</option>
+            <option value="java">java</option>
             <option value="cpp">cpp</option>
-            <option value="javascript">JavaScript</option>
+            <option value="javascript">javascript</option>
             <option value="python">python</option>
           </select>
         </div>

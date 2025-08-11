@@ -3,12 +3,109 @@
   flex-direction: column;
   height: 100vh;
   gap: 5px;
-  background-color: black;
+  // background-color: black;
   .main-section{
     display: flex;
     width: 100%;
     flex: 1;
     overflow: hidden;
     gap: 20px;
+  }
+  .fullpage-loader{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0,0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .loader{
+      width: 50px;
+      height: 50px;
+      background-color: transparent;
+      border: 20px solid rgb(228, 148, 148);
+      border-left-color: red;
+      border-radius: 50%;
+      
+      animation: 0.8s loader infinite linear;
+    }
+  }
+}
+
+.io-container{
+  width: 30%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  overflow: hidden;
+  gap:5px;
+  .input{
+    height: 45%;
+    textarea{
+      width: 99%;
+      height: 90%;
+      border: none;
+      font-size: 30px;
+      resize: none;
+      padding: 5px;
+    }
+  }
+  .output{
+    height: 48%;
+    textarea{
+      padding: 5px;
+      font-size: 30px;
+      width: 100%;
+      height: 85%;
+      border: none;
+      resize: none;
+    }
+  }
+}
+
+@keyframes loader {
+  from{
+    transform: rotate(0deg);
+  }
+  to{
+    transform: rotate(360deg);
+  }
+}
+
+.input-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: rgb(233, 218, 218);
+  height: 10%;
+  .button{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+  }
+  input{
+    display: none;
+  }
+}
+
+.output-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: rgb(233, 218, 218);
+  height: 10%;
+  button{
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2px;
+    border: none;
+    border-radius: 20px;
   }
 }
